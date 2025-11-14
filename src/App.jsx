@@ -1,6 +1,9 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Services from './components/Services'
+import Vendors from './components/Vendors'
+import About from './components/About'
+import Projects from './components/Projects'
 import Trust from './components/Trust'
 import Contact from './components/Contact'
 
@@ -10,6 +13,9 @@ function App() {
       <Navbar />
       <Hero />
       <Services />
+      <Vendors />
+      <About />
+      <Projects />
       <Trust />
       <Contact />
       <footer className="bg-[#0b0e13] border-t border-white/10">

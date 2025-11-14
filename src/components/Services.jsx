@@ -79,7 +79,8 @@ export default function Services() {
                   <div className="rounded-lg bg-white/10 p-2">
                     <Icon className="text-emerald-400" size={22} />
                   </div>
-                  <span className="text-xs text-slate-400">{key}</span>
+                  {/* Replace letter badge with the actual service name */}
+                  <span className="text-xs text-slate-300 px-2 py-0.5 rounded-full border border-white/10 bg-white/5">{title}</span>
                 </div>
                 <h3 className="mt-3 text-xl font-semibold text-white">{title}</h3>
                 <ul className="mt-4 space-y-2 text-sm">

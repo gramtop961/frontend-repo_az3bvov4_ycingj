@@ -3,13 +3,13 @@ import Spline from '@splinetool/react-spline'
 export default function Hero() {
   return (
     <section className="relative min-h-[90vh] w-full overflow-hidden bg-[#0b0e13] text-white">
-      <div className="absolute inset-0">
+      {/* Spline scene (shield). We keep the original background and shift hue to cyan by default */}
+      <div className="absolute inset-0" style={{ filter: 'hue-rotate(170deg) saturate(120%) contrast(105%)' }}>
         <Spline scene="https://prod.spline.design/DtQLjBkD1UpownGS/scene.splinecode" style={{ width: '100%', height: '100%' }} />
       </div>
 
-      {/* Atmosphere + tint overlays */}
+      {/* Subtle radial atmosphere from the previous design */}
       <div className="absolute inset-0 bg-[radial-gradient(50%_50%_at_50%_50%,rgba(120,119,198,0.25)_0%,rgba(16,23,41,0.7)_60%,#0b0e13_100%)] pointer-events-none" />
-      <div className="absolute inset-0 pointer-events-none mix-blend-screen bg-gradient-to-tr from-cyan-400/35 via-purple-500/25 to-transparent" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 pt-40 pb-24">
         <div className="max-w-2xl">
@@ -18,7 +18,7 @@ export default function Hero() {
             Enterprise-grade security & infrastructure
           </p>
           <h1 className="text-4xl md:text-6xl font-semibold tracking-tight leading-tight">
-            Cybersecurity. Hardened Infrastructure. Continuous Trust.
+            From Cable to Cloud — Building Secure Infrastructure
           </h1>
           <p className="mt-6 text-slate-300 max-w-xl">
             Syntric delivers end-to-end protection across your network, endpoints, and cloud — built on industry frameworks like ISO 27001, NIST, CIS, and MITRE ATT&CK.
