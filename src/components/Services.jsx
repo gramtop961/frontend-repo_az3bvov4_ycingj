@@ -1,4 +1,5 @@
-import { Shield, Server, Network, Crosshair, Activity } from 'lucide-react'
+import { Shield, Server, Network, Crosshair } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
 
 const services = [
   {
@@ -46,24 +47,41 @@ const services = [
     ],
     gradient: 'from-fuchsia-500/30 to-slate-700/20',
   },
-  {
-    key: 'E',
-    icon: Activity,
-    title: 'Managed Security & Monitoring',
-    points: [
-      'Continuous monitoring (SOC-style operations)',
-      'Incident response and containment procedures',
-      'Threat detection using MITRE ATT&CK framework',
-      'Post-incident analysis and posture optimization',
-    ],
-    gradient: 'from-cyan-500/30 to-slate-700/20',
-  },
 ]
 
+function useReveal() {
+  const ref = useRef(null)
+  const [visible, setVisible] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setVisible(true)
+            obs.unobserve(el)
+          }
+        })
+      },
+      { threshold: 0.15 }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+  return { ref, visible }
+}
+
 export default function Services() {
+  const { ref, visible } = useReveal()
   return (
     <section id="services" className="relative bg-[#0b0e13] text-slate-200 py-24">
-      <div className="mx-auto max-w-7xl px-6">
+      <div
+        ref={ref}
+        className={`mx-auto max-w-7xl px-6 transition-all duration-700 ${
+          visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        }`}
+      >
         <div className="mb-12">
           <h2 className="text-2xl uppercase tracking-widest text-slate-400">Core Service Pillars</h2>
           <p className="mt-3 text-3xl md:text-4xl font-semibold text-white">End-to-end cybersecurity and infrastructure solutions</p>
@@ -79,7 +97,6 @@ export default function Services() {
                   <div className="rounded-lg bg-white/10 p-2">
                     <Icon className="text-emerald-400" size={22} />
                   </div>
-                  {/* Replace letter badge with the actual service name */}
                   <span className="text-xs text-slate-300 px-2 py-0.5 rounded-full border border-white/10 bg-white/5">{title}</span>
                 </div>
                 <h3 className="mt-3 text-xl font-semibold text-white">{title}</h3>
